@@ -1,53 +1,59 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Password Generator Returns - https://net-comber.com/charset.html
+
 function generatePassword() {
-//allows me to see action is happening on button click
-console.log("Clicked button.");  
+  var newPassword = "";
+  var characters = parseInt(
+    prompt(
+      "How many characters would you like for your password to contain?",
+      "min 8, max 128"
+    )
+  );
+  var lowercase = confirm(
+    "Click OK to confirm including lowercase letters in your password."
+  );
+  var uppercase = confirm(
+    "Click OK to confirm including uppercase letters in your password."
+  );
+  var numbers = confirm(
+    "Click OK to confirm including numbers in your password."
+  );
+  var special = confirm(
+    "Click OK to confirm including special characters in your password."
+  );
 
-//asks user how many characters to generate for password & shows user length
-var characters = prompt ("How many characters would you like for your password to contain?", "min 8, max 128"); 
-// var input = input.value;
-// input = Number(input);
-// sets input field criteria between 8 and 128 characters in length & gives alert if violated
-if (characters > 8 || characters < 128 || number == null) {   
-  alert("Please enter character length between 8 and 128.");
-  // cancel button to start over
-} 
-
-var lowercase = confirm("Click OK to confirm including lowercase letters in your password.");
- if (lowercase == true) {
-   //adds to password generated
- } 
-
-var uppercase = confirm("Click OK to confirm including uppercase letters in your password."); {
-  if (uppercase == true) {
-    //adds to password generated
+  //asks user how many characters to generate for password & shows user length
+  //sets input field criteria between 8 and 128 characters in length & gives alert if violated
+  if (characters < 8 || characters > 128 || characters == null) {
+    alert("Please enter character length between 8 and 128.");
   }
-
-  var numbers = confirm("Click OK to confirm including numbers in your password."); {
-    if (numbers ==true) {
-      //adds to password generated
+  //Looping until chosen characters length has been met
+  for (var i = 0; i < characters; i++) {
+    // Displays generated password to user out of 26 lowercase Browser letters
+    // Concatenates newPassword variable with chosen conditions
+    if (lowercase == true) {
+      newPassword += String.fromCharCode(Math.floor(Math.random() * 26) + 97);
     }
 
-    var special = confirm("Click OK to confirm including special characters in your password."); {
-      if (special == true) {
-        //adds to password generated
-      }
+    // Displays generated password to user out of 26 uppercase Browser letters
+
+    if (uppercase == true) {
+      newPassword += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    }
+
+    if (numbers == true) {
+      newPassword += String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+    }
+
+    if (special == true) {
+      const special = "!@#$%^&*+<>/,.";
+      newPassword += special[Math.floor(Math.random() * special.length)];
     }
   }
+  return newPassword;
 }
-}
-
-
-// var alerts = [lowercase, uppercase, numbers, special characters];
-// alerts user to choose at least one criteria and starts alerts again
-
-//
-
-//displays generated password to user
-// return "generated password appear here";  
-
 
 // Write password to the #password input
 function writePassword() {
@@ -55,8 +61,12 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+// var characters = characters.value;
+// var lowercase = lowercase.value;
+// var uppercase = uppercase.value;
+// var numbers = numbers.value;
+// var special = special.value;
