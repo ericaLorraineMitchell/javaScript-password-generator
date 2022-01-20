@@ -27,7 +27,7 @@ function generatePassword() {
   if (characterInput < 8 || characterInput > 128 || characterInput == false) {
     alert("Please enter character length between 8 and 128.");
   }
-
+  //Sets alert if none of password options are confirmed
   if (
     lowercase == false &&
     uppercase == false &&
@@ -36,7 +36,7 @@ function generatePassword() {
   ) {
     alert("Please start over and chose at least one password option.");
   }
-  //pushes newPassword variable with chosen conditions
+  //Pushes newPassword variable with chosen conditions
   if (lowercase) {
     characterOptions.push("abcdefghijklmnopqrstuzwxyz");
   }
@@ -52,10 +52,10 @@ function generatePassword() {
   if (special) {
     characterOptions.push("!@^&*?#$%/+");
   }
-
+  //Joins all password conditions & makes them into single strings
   var formatted = characterOptions.join("").split("");
 
-  //Looping until chosen characterInput length has been met
+  //Loops until chosen characterInput length has been met passing through random generation
   for (var i = 0; i < characterInput; i++) {
     newPassword += formatted[Math.floor(Math.random() * formatted.length)];
   }
